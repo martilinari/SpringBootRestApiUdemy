@@ -1,8 +1,19 @@
-server.port:8040
-spring.datasource.url=jdbc:mysql://localhost/db_rest_service?useSSL=false
-spring.datasource.username=root
-spring.datasource.password=Adfadfkkk8998
-spring.datasource.driver-class-name=com.mysql.jdbc.Driver
-spring.jpa.database-platform=org.hibernate.dialect.MySQL5InnoDBDialect
-spring.jpa.hibernate.ddl-auto=update
-logging.level.org.hibernate.SQL=debug
+server:
+  port: 8080
+  
+spring:
+  banner:
+    location: classpath:banner/banner.txt
+  datasource:
+    url: jdbc:mysql://localhost:3306/udemy?useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: root
+    password: Parsertest1
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    
+logging:  level:    org.hibernate.SQLQuery: debug

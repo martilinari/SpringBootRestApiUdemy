@@ -11,11 +11,19 @@ import com.example.curso.model.MProfesor;
 @Component("mapper")
 public class Mapper {
 
-	public static List<MProfesor> convertirLista(List<Profesor> profesores){
-		List<MProfesor> mProfesores = new ArrayList<>();
-		for(Profesor profesor: profesores) {
+	public List<MProfesor> convertirLista(List<Profesor> profesores) {
+		List<MProfesor> mProfesores = new ArrayList<MProfesor>();
+		for (Profesor profesor : profesores) {
 			mProfesores.add(new MProfesor(profesor));
 		}
+
 		return mProfesores;
+
+	}
+
+	public MProfesor convertir(Profesor profesor) {
+		MProfesor mProfesor = new MProfesor();
+		mProfesor = new MProfesor(profesor);
+		return mProfesor;
 	}
 }

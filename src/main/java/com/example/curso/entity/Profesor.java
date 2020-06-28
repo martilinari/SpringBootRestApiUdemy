@@ -3,9 +3,7 @@ package com.example.curso.entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,71 +12,53 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 @Entity
-@Table(name="profesores")
+@Table(name = "profesores")
 public class Profesor implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column (name="nombre")
-	private String nombre;
-	
+
+	@Column(name = "nombre")
+	private String name; 
+
 	@Column(length = 60, unique = true)
 	private String email;
-	
+
 	private String password;
-	
-	@Column(length = 20000)
+
+	@Column(length = 2000)
 	private String foto;
-	
-	@Column(name= "create_at")
+
+	@Column(name = "create_at")
 	@Temporal(TemporalType.DATE)
 	private Date createAt;
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "profesor_id", referencedColumnName = "id")
-	private List<Curso> curso = new ArrayList<>();
+	private List<Curso> listCursos = new ArrayList<>();
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JsonBackReference
-	@JoinTable(name="profesores_lenguajes",
-		joinColumns = @JoinColumn(name="profesor_id", referencedColumnName = "id"),
-		inverseJoinColumns = @JoinColumn(name="lenguaje_id", referencedColumnName = "id"))
-	private Set<Lenguaje> lenguajes = new HashSet<Lenguaje>();
-	
-	public Set<Lenguaje> getLenguajes() {
-		return lenguajes;
-	}
-
-	public void setLenguajes(Set<Lenguaje> lenguajes) {
-		this.lenguajes = lenguajes;
-	}
-
-	public List<Curso> getCurso() {
-		return curso;
-	}
-
-	public void setCurso(List<Curso> curso) {
-		this.curso = curso;
-	}
-
 	@PrePersist
 	public void prePersist() {
 		createAt = new Date();
 	}
-	
+
+	public List<Curso> getListCursos() {
+		return listCursos;
+	}
+
+	public void setListCursos(List<Curso> listCursos) {
+		this.listCursos = listCursos;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -87,12 +67,12 @@ public class Profesor implements Serializable {
 		this.id = id;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getName() {
+		return name;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getEmail() {
@@ -126,10 +106,5 @@ public class Profesor implements Serializable {
 	public void setCreateAt(Date createAt) {
 		this.createAt = createAt;
 	}
-	
-	public void addLenguaje(Lenguaje lenguaje) {
-		this.lenguajes.add(lenguaje);
-	}
 
-	private static final long serialVersionUID = 1L;
 }

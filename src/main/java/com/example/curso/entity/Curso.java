@@ -10,22 +10,24 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="curso")
+@Table(name = "curso")
 public class Curso implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long curso_id;
-	
-	private String nombre;
-	
-	@Column(name="profesor_id")
+
+	@Column(name = "nombre")
+	private String name;
+
+	@Column(name = "profesor_id")
 	private Long profesorId;
-	
+
 	public Curso() {
-		
+
 	}
-	
+
 	public Long getCurso_id() {
 		return curso_id;
 	}
@@ -34,23 +36,20 @@ public class Curso implements Serializable {
 		this.curso_id = curso_id;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getName() {
+		return name;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setName(String name) {
+		this.name = name;
 	}
-
 
 	public Long getProfesorId() {
 		return profesorId;
 	}
 
-
 	public void setProfesorId(Long profesorId) {
 		this.profesorId = profesorId;
 	}
 
-	private static final long serialVersionUID = 1L;
 }

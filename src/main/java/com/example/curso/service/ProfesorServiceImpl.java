@@ -10,12 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.curso.dao.IProfesorDao;
 import com.example.curso.entity.Profesor;
 
-@Service
-public class ProfesorServiceImpl implements IProfesorService{
+@Service("profesorService")
+public class ProfesorServiceImpl implements IProfesorService {
 
 	@Autowired
 	private IProfesorDao profesorDao;
-	
+
 	@Override
 	@Transactional(readOnly = true)
 	public List<Profesor> findAll() {
@@ -38,25 +38,25 @@ public class ProfesorServiceImpl implements IProfesorService{
 	@Transactional
 	public void deleteProfesor(Profesor profesor) {
 		profesorDao.deleteById(profesor.getId());
-		
 	}
 
 	@Override
 	@Transactional
-	public Profesor uptadeProfesor(Profesor profesor) {
-		return (Profesor)profesorDao.save(profesor);
+	public Profesor updateProfesor(Profesor profesor) {
+		return (Profesor) profesorDao.save(profesor);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public Optional<Profesor> findProfesorById(Long profesor_id) {
-		return (Optional<Profesor>)profesorDao.findById(profesor_id);
+	public Optional<Profesor> findProfesorById(Long id) {
+		return (Optional<Profesor>) profesorDao.findById(id);
 	}
 
 	@Override
 	@Transactional
 	public void deleteProfesor(Long id) {
 		profesorDao.deleteById(id);
+
 	}
 
 	@Override
@@ -66,7 +66,6 @@ public class ProfesorServiceImpl implements IProfesorService{
 	}
 
 	@Override
-	@Transactional(readOnly = true)
 	public Profesor findByIdSQL(Long id) {
 		return profesorDao.findByIdSQL(id);
 	}
@@ -75,12 +74,14 @@ public class ProfesorServiceImpl implements IProfesorService{
 	@Transactional
 	public void save(Profesor profesor) {
 		profesorDao.save(profesor);
+
 	}
 
 	@Override
 	@Transactional
 	public void deleteAllProfesor() {
 		profesorDao.deleteAll();
+		
 	}
 
 }
