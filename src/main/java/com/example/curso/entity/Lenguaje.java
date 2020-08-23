@@ -13,7 +13,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -30,12 +33,17 @@ public class Lenguaje implements Serializable {
 	private String name;
 
 	@Column(name = "date")
-	@JsonFormat(pattern = "YYY-MM-dd")
+	@Temporal(TemporalType.DATE)
 	private Date date;
 
 	@ManyToMany
 	@JoinTable(name = "profesores_lenguajes", joinColumns = @JoinColumn(name = "lenguaje_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "profesor_id", referencedColumnName = "id"))
 	private Set<Profesor> profesores = new HashSet<Profesor>();
+
+	@PrePersist
+	public void prePersist() {
+		date = new Date();
+	}
 
 	public Long getId() {
 		return id;
