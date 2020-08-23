@@ -1,4 +1,4 @@
-package com.example.curso.service;
+package com.example.curso.service.implementation;
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.curso.dao.ICursoDao;
 import com.example.curso.entity.Curso;
+import com.example.curso.service.ICursoService;
 
 @Service("cursoService")
 public class CursoServiceImpl implements ICursoService {

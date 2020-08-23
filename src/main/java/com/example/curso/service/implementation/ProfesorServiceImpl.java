@@ -1,4 +1,4 @@
-package com.example.curso.service;
+package com.example.curso.service.implementation;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.curso.dao.IProfesorDao;
 import com.example.curso.entity.Profesor;
+import com.example.curso.service.IProfesorService;
 
 @Service("profesorService")
 public class ProfesorServiceImpl implements IProfesorService {
