@@ -126,4 +126,8 @@ public class Profesor implements Serializable {
 		this.createAt = createAt;
 	}
 
+	public void addLenguaje(Lenguaje lenguaje) {
+		this.lenguajes.add(lenguaje);
+	}
+
 }
